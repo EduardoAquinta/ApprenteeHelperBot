@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import ChatBot from "./Components/ChatBot";
 
@@ -11,10 +11,41 @@ describe("Tests for the header component", () =>{
   });
 })
 
-describe("Tests for the chat bot component", () => {
-  test('should have a textbox on the screen for the user to use', () => {
+describe("Tests for the chat bot component, front end elements", () => {
+  test('should render a textbox on the screen for the user to use', () => {
     render(<ChatBot />);
     const linkElement = screen.getByRole("textbox");
     expect(linkElement).toBeInTheDocument();
   });
+  test('should render button on the screen to click', () => {
+    render(<ChatBot />);
+    const linkElement = screen.getByRole("button");
+    expect(linkElement).toBeInTheDocument();
+  })
+  it('should update state when input is changed', () => {
+    render(<ChatBot />);
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: 'John' } });
+    expect(input.value).toBe('John');
+  });
+
 });
+
+
+
+// it('should update state when input is changed', () => {
+//   const { getByLabelText } = render(<Input />);
+//   const input = getByLabelText('Name:');
+//   fireEvent.change(input, { target: { value: 'John' } });
+//   expect(input.value).toBe('John');
+// });
+
+// it('should call submit callback when form is submitted', () => {
+//   const submitCallback = jest.fn();
+//   const { getByText } = render(<Input onSubmit={submitCallback} />);
+//   const submitButton = getByText('Submit');
+//   fireEvent.click(submitButton);
+//   expect(submitCallback).toHaveBeenCalled();
+// });
+
+

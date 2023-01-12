@@ -1,15 +1,12 @@
 export default function ChatBot() {
   return (
      <form>
-        <input type="text" value="input" />
+        <input type="text" />
         <button type="submit">Submit</button>
      </form>  )
 }
 
-// <form>
-//   <input type="text" value="input" />
-//   <button type="submit">Submit</button>
-// </form>
+
 
 
 
