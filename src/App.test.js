@@ -32,7 +32,7 @@ describe("Tests for the chat bot component, front end elements", () => {
 });
 
 
-
+// Code example from Chat GPT:
 // it('should update state when input is changed', () => {
 //   const { getByLabelText } = render(<Input />);
 //   const input = getByLabelText('Name:');
@@ -49,3 +49,11 @@ describe("Tests for the chat bot component, front end elements", () => {
 // });
 
 
+describe("Tests for the chat bot component, back end elements", () => {
+  
+  //test for connection  - positive (ie status 200)
+    // test for negative connection (404)
+    //test for valid response (is it what you'd expect back)
+  
+
+});
