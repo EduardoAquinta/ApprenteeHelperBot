@@ -62,7 +62,7 @@ describe('ChatGPT api back end tests', () => {
 
 
 
-
+// Code example from Chat GPT:
 // it('should update state when input is changed', () => {
 //   const { getByLabelText } = render(<Input />);
 //   const input = getByLabelText('Name:');
@@ -79,3 +79,11 @@ describe('ChatGPT api back end tests', () => {
 // });
 
 
+describe("Tests for the chat bot component, back end elements", () => {
+  
+  //test for connection  - positive (ie status 200)
+    // test for negative connection (404)
+    //test for valid response (is it what you'd expect back)
+  
+
+});
