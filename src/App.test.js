@@ -1,6 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import ChatBot from "./Components/ChatBot";
+const https = require('https');
+const assert = require('assert');
+const apiURL = process.env.REACT_APP_API_KEY
+
 
 
 describe("Tests for the header component", () =>{
@@ -30,6 +34,32 @@ describe("Tests for the chat bot component, front end elements", () => {
   });
 
 });
+
+describe('ChatGPT api back end tests', () => {
+  test('should return status code 200', (done) => {
+    const options = {
+      hostname: 'api.openai.com',
+      port: 443,
+      path: '/v1/engines/davinci-codex/completions',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiURL}`
+      }
+    };
+    const req = https.request(options, (res) => {
+      assert.equal(res.statusCode, 200);
+      console.log(res)
+      done();
+    });
+    req.write(JSON.stringify({
+      prompt: "What is the current weather in New York City?",
+      max_tokens: 128
+    }));
+    req.end();
+  });
+});
+
 
 
 
