@@ -1,9 +1,12 @@
+import Button from 'react-bootstrap/Button';
+import {Form, FormControl, InputGroup} from "react-bootstrap";
+
 export default function ChatBot() {
   return (
-     <form>
-        <input type="text" />
-        <button type="submit">Submit</button>
-     </form>  )
+     <Form>
+         <FormControl type="text" placeholder={"Please input here"}/>
+        <Button type="submit" variant="warning" size="lg">Submit</Button>
+     </Form>  )
 }
 
 
