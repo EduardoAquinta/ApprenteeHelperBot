@@ -1,11 +1,11 @@
-import Button from 'react-bootstrap/Button';
 import {Form, FormControl, InputGroup} from "react-bootstrap";
+import FormButton from "./atoms/FormButton";
 
 export default function ChatBot() {
   return (
      <Form>
-         <FormControl type="text" placeholder={"Please input here"}/>
-        <Button type="submit" variant="warning" size="lg">Submit</Button>
+         <FormControl type="text" placeholder={"Please input here"} />
+        <FormButton />
      </Form>  )
 }
 

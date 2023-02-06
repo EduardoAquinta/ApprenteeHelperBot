@@ -32,7 +32,12 @@ describe("Tests for the chat bot component, front end elements", () => {
     fireEvent.change(input, { target: { value: 'John' } });
     expect(input.value).toBe('John');
   });
-
+  test('calls onClick prop when clicked', () => {
+    const handleClick = jest.fn()
+    render(<Button onClick={handleClick}>Click Me</Button>)
+    fireEvent.click(screen.getByText(/click me/i))
+    expect(handleClick).toHaveBeenCalledTimes(1)
+  })
 });
 
 describe('ChatGPT api back end tests', () => {
@@ -49,7 +54,6 @@ describe('ChatGPT api back end tests', () => {
     };
     const req = https.request(options, (res) => {
       assert.equal(res.statusCode, 200);
-      console.log(res)
       done();
     });
     req.write(JSON.stringify({
