@@ -1,10 +1,18 @@
-import {Form, FormControl, InputGroup} from "react-bootstrap";
+import {Form} from "react-bootstrap";
 import FormButton from "./atoms/FormButton";
+import { useState, useEffect } from "react";
+import FormInput from "./atoms/FormInput";
 
 export default function ChatBot() {
+  const [input, setInput] = useState('Please type!');
+
+  useEffect(() => {
+      console.log(input);
+  }, [input]);
+
   return (
      <Form>
-         <FormControl type="text" placeholder={"Please input here"} />
+         <FormInput setInput={setInput} input={input} />
         <FormButton />
      </Form>  )
 }
@@ -15,7 +23,7 @@ export default function ChatBot() {
 
 
 // import React, { useState } from 'react';
-// import openai from 'openai';
+// import openai from 'react-openai-api';
 //
 // function ChatGPT() {
 //   const [input, setInput] = useState('');
@@ -27,7 +35,7 @@ export default function ChatBot() {
 //
 //   const handleSubmit = async event => {
 //     event.preventDefault();
-//     openai.apiKey = "YOUR_API_KEY_HERE";
+//     openai.apiKey = process.env.REACT_APP_API_KEY;
 //     const responseData = await openai.Completion.create({
 //       prompt: `You: ${input}\nBot:`,
 //       model: 'text-davinci-002',
