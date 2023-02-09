@@ -16,7 +16,15 @@ describe("Tests for the header component", () =>{
   });
 })
 
-describe("Tests for the chat bot component, front end elements", () => {
+describe("Tests for the curl https://api.openai.com/v1/completions \\\n" +
+    "  -H 'Content-Type: application/json' \\\n" +
+    "  -H 'Authorization: Bearer YOUR_API_KEY' \\\n" +
+    "  -d '{\n" +
+    "  \"model\": \"text-davinci-003\",\n" +
+    "  \"prompt\": \"Say this is a test\",\n" +
+    "  \"max_tokens\": 7,\n" +
+    "  \"temperature\": 0\n" +
+    "}'chat bot component, front end elements", () => {
   test('should render a textbox on the screen for the user to use', () => {
     render(<ChatBot />);
     const linkElement = screen.getByRole("textbox");

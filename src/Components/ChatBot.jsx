@@ -5,17 +5,19 @@ import FormInput from "./atoms/FormInput";
 
 export default function ChatBot() {
   const [input, setInput] = useState('Please type!');
+  const [chat, setChat] = useState ([]);
 
   useEffect(() => {
-      console.log(input);
-  }, [input]);
+      console.log(chat);
+  }, [chat]);
 
   return (
      <Form>
          <FormInput setInput={setInput} input={input} />
-        <FormButton />
+        <FormButton input={input} chat={chat}  setChat={setChat}/>
      </Form>  )
 }
+
 
 
 

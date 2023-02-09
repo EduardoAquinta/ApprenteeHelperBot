@@ -1,8 +1,11 @@
 import Button from 'react-bootstrap/Button';
 
-export default function FormButton() {
+export default function FormButton(props) {
     const handleClick = (e) => {
-        console.log("clicked!");
+        e.preventDefault();
+        const prevchat = [...props.chat];
+        prevchat.push(props.input);
+        props.setChat(prevchat);
     }
     return (
             <Button type="submit" variant="warning" size="lg" onClick={handleClick}>Submit</Button>
