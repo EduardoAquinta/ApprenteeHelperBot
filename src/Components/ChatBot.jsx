@@ -1,21 +1,21 @@
-import {Form} from "react-bootstrap";
-import FormButton from "./atoms/FormButton";
 import { useState, useEffect } from "react";
-import FormInput from "./atoms/FormInput";
+import ChatOutput from "./molecules/ChatOutput";
+import ChatInput from "./molecules/ChatInput";
 
 export default function ChatBot() {
   const [input, setInput] = useState('Please type!');
-  const [chat, setChat] = useState ([]);
+  const [messages, setMessages] = useState ([]);
 
   useEffect(() => {
-      console.log(chat);
-  }, [chat]);
+      console.log(messages);
+  }, [messages]);
 
   return (
-     <Form>
-         <FormInput setInput={setInput} input={input} />
-        <FormButton input={input} chat={chat}  setChat={setChat}/>
-     </Form>  )
+      <>
+          <ChatOutput  messages={messages}/>
+          <ChatInput setInput={setInput} input={input} messages={messages}  setMessages={setMessages} />
+      </>
+  )
 }
 
 
