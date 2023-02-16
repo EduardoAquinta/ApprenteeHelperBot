@@ -1,11 +1,15 @@
+import Enzyme, {shallow} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import ChatBot from "./Components/ChatBot";
 import FormButton from "./Components/atoms/FormButton";
+import ChatInput from "./Components/molecules/ChatInput";
 const https = require('https');
 const assert = require('assert');
 const apiURL = process.env.REACT_APP_API_KEY
 
+Enzyme.configure({adapter: new Adapter()});
 
 
 describe("Tests for the header component", () =>{
@@ -73,6 +77,14 @@ describe('ChatGPT api back end tests', () => {
     }));
     req.end();
   });
+
+// describe('ChatInput tests', () => {
+//   test('should not allow user to send a message if they were the last to send one.', () => {
+//     const wrapper = shallow(<ChatInput />);
+//     const instance = wrapper.instance();
+//     console.log(instance);
+//   });
+// });
 
 });
 
