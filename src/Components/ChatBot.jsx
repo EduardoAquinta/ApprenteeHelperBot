@@ -12,10 +12,20 @@ export default function ChatBot() {
       console.log(messages);
       if (userLastMessage) {
           // Send me to the API!
-          const lastUserMessage = messages.slice(-1);
+          const userMessage = messages.slice(-1);
 
           // Add me to the messages array to display!
-          messages.push('Test response from API. Your last message was: ' + messages.slice(-1))
+          // messages.push('Test response from API. Your last message was: ' + userMessage)
+
+          fetch('https://uselessfacts.jsph.pl/random.json?language=en', {
+              method: 'GET'
+          })
+              .then((res) => res.json())
+              .then((data) => {
+                  const prevmessages = [...messages];
+                  prevmessages.push(data.text)
+                  setMessages(prevmessages);
+              })
 
           // Allow user to submit a new message.
           setUserLastMessage(false)
