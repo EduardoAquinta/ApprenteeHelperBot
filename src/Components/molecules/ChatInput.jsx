@@ -1,23 +1,17 @@
 import {Form} from "react-bootstrap";
 import FormInput from "../atoms/FormInput";
 import FormButton from "../atoms/FormButton";
-import {useState} from "react";
-import useChatGpt from "../hooks/useChatGPT";
 
 function ChatInput(props) {
 
-    const [userLastMessage, setUserLastMessage] = useState(false)
+
 
     function handleUserInput() {
-        if (!userLastMessage) {
+        if (!props.userLastMessage) {
             const prevmessages = [...props.messages];
             prevmessages.push(props.input);
+            props.setUserLastMessage(true);
             props.setMessages(prevmessages);
-            setUserLastMessage(true);
-
-            // Send props.input to API here??
-            // eslint-disable-next-line react-hooks/rules-of-hooks
-            useChatGpt()
         }
     }
 

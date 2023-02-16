@@ -5,15 +5,33 @@ import ChatInput from "./molecules/ChatInput";
 export default function ChatBot() {
   const [input, setInput] = useState('Please type!');
   const [messages, setMessages] = useState ([]);
+  const [userLastMessage, setUserLastMessage] = useState(false)
+
 
   useEffect(() => {
       console.log(messages);
-  }, [messages]);
+      if (userLastMessage) {
+          // Send me to the API!
+          const lastUserMessage = messages.slice(-1);
+
+          // Add me to the messages array to display!
+          messages.push('Test response from API. Your last message was: ' + messages.slice(-1))
+
+          // Allow user to submit a new message.
+          setUserLastMessage(false)
+      }
+  }, [messages, userLastMessage]);
+
 
   return (
       <>
-          <ChatOutput  messages={messages}/>
-          <ChatInput setInput={setInput} input={input} messages={messages}  setMessages={setMessages} />
+          <ChatOutput messages={messages}/>
+          <ChatInput userLastMessage={userLastMessage}
+                     setUserLastMessage={setUserLastMessage}
+                     setInput={setInput}
+                     input={input}
+                     messages={messages}
+                     setMessages={setMessages} />
       </>
   )
 }
