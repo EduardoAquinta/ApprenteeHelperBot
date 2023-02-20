@@ -5,7 +5,6 @@ export default function FormInput(props) {
     function handleChange(e) {
         e.preventDefault();
         props.setInput(e.target.value)
-        console.log(e.target.value)
     }
 
     return (

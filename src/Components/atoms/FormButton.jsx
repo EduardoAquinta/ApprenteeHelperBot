@@ -4,9 +4,8 @@ export default function FormButton(props) {
     const handleClick = (e) => {
         e.preventDefault();
         props.handleUserInput()
-        // e.target.value = ''
     }
     return (
-            <Button type="submit" variant="warning" size="lg" onClick={handleClick}>Submit</Button>
+            <Button type="submit" variant="warning" size="lg" onClick={handleClick} disabled={!props.buttonEnabled}>Submit</Button>
  )
 }

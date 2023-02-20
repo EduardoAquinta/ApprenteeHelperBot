@@ -7,6 +7,7 @@ const apiURL = process.env.REACT_APP_API_KEY
 export default function ChatBot() {
   const [input, setInput] = useState('');
   const [inputEnabled, setInputEnabled] = useState(true);
+  const [buttonEnabled, setButtonEnabled] = useState( true);
   const [messages, setMessages] = useState ([]);
   const [userLastMessage, setUserLastMessage] = useState(false)
 
@@ -17,10 +18,8 @@ export default function ChatBot() {
           // Send me to the API!
           const userMessage = messages.slice(-1);
 
-          // Add me to the messages array to display!
-          // messages.push('Test response from API. Your last message was: ' + userMessage)
-
           setInputEnabled(false);
+          setButtonEnabled(false);
 
           fetch('https://api.openai.com/v1/completions', {
               body: JSON.stringify({
@@ -45,11 +44,13 @@ export default function ChatBot() {
                   setMessages(prevmessages);
                   setInput("")
               })
+              // .catch((error) =>{
+              // console.log(`Error: ${error.choices[0].text}`) })
               .finally(() => {
-              setInputEnabled(true)
+              setInputEnabled(true);
+                  setButtonEnabled(true);
           })
-          //terminal.echo(json.choices[0].text.trim());
-          // Allow user to submit a new message.
+
           setUserLastMessage(false)
 
       }
@@ -66,6 +67,7 @@ export default function ChatBot() {
                      messages={messages}
                      setMessages={setMessages}
                      inputEnabled={inputEnabled}
+                     buttonEnabled={buttonEnabled}
           />
       </>
   )
