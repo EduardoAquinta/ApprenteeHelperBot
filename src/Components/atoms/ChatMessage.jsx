@@ -8,5 +8,9 @@ function ChatMessage(props) {
         </Alert>
     );
 }
-
+// [['user', 'message'], ['gpt', 'response']]
+// {
+//      'user': 'message',
+//      'gpt': 'message'
+// }
 export default ChatMessage;
