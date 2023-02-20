@@ -17,7 +17,7 @@ function ChatInput(props) {
 
     return (
         <Form>
-            <FormInput setInput={props.setInput} input={props.input} />
+            <FormInput setInput={props.setInput} input={props.input} inputEnabled={props.inputEnabled}/>
             <FormButton handleUserInput={handleUserInput} />
         </Form>
     )
