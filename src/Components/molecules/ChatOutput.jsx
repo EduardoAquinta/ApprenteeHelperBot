@@ -5,7 +5,14 @@ function ChatOutput(props) {
     return (
         <div className='chat-container'>
             {props.messages.map((message, index) => {
-                return <ChatMessage key={index} message={message} />
+                let variantType = 'info';
+                if (index % 2 !== 0) {
+                    variantType = 'warning';
+                }
+                if (props.apiError === true) {
+                    variantType = 'danger';
+                }
+                return <ChatMessage variant={variantType} key={index} message={message} />
             })}
         </div>
     )

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ChatOutput from "./molecules/ChatOutput";
 import ChatInput from "./molecules/ChatInput";
 const apiURL = process.env.REACT_APP_API_KEY
@@ -9,7 +9,8 @@ export default function ChatBot() {
   const [inputEnabled, setInputEnabled] = useState(true);
   const [buttonEnabled, setButtonEnabled] = useState( true);
   const [messages, setMessages] = useState ([]);
-  const [userLastMessage, setUserLastMessage] = useState(false)
+  const [userLastMessage, setUserLastMessage] = useState(false);
+  const [apiError, setApiError] = useState(false);
 
 
   useEffect(() => {
@@ -40,15 +41,21 @@ export default function ChatBot() {
               .then((data) => {
                   console.log(data)
                   const prevmessages = [...messages];
-                  prevmessages.push(data.choices[0].text);
+                  if (data.hasOwnProperty('error')) {
+                      prevmessages.push(data.error.message);
+                      setApiError(true);
+                  } else {
+                      prevmessages.push(data.choices[0].text.substring(2));
+                  }
                   setMessages(prevmessages);
                   setInput("")
               })
-              // .catch((error) =>{
-              // console.log(`Error: ${error.choices[0].text}`) })
+              .catch((error) =>{
+              console.log(`Error: ${error.message}`) })
               .finally(() => {
               setInputEnabled(true);
-                  setButtonEnabled(true);
+              setButtonEnabled(true);
+              setApiError(false);
           })
 
           setUserLastMessage(false)
@@ -56,10 +63,15 @@ export default function ChatBot() {
       }
   }, [messages, userLastMessage]);
 
+    const messagesEndRef = useRef(null);
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+    useEffect(scrollToBottom, [messages]);
 
   return (
       <>
-          <ChatOutput messages={messages}/>
+          <ChatOutput apiError={apiError} messages={messages}/>
           <ChatInput userLastMessage={userLastMessage}
                      setUserLastMessage={setUserLastMessage}
                      setInput={setInput}
