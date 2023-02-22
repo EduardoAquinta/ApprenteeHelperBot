@@ -26,8 +26,8 @@ export default function ChatBot() {
               body: JSON.stringify({
                   'model': 'text-davinci-003',
                   'prompt': input,
-                  'temperature': 0.7,
-                  'max_tokens': 128
+                  'temperature': 0.86,
+                  'max_tokens': 256
               }),
               method: 'POST',
               headers: {
