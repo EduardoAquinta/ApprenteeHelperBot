@@ -14,10 +14,7 @@ export default function ChatBot() {
 
 
   useEffect(() => {
-      console.log(messages);
       if (userLastMessage) {
-          // Send me to the API!
-          //const userMessage = messages.slice(-1);
 
           setInputEnabled(false);
           setButtonEnabled(false);
@@ -26,7 +23,7 @@ export default function ChatBot() {
               body: JSON.stringify({
                   'model': 'text-davinci-003',
                   'prompt': input,
-                  'temperature': 0.99,
+                  'temperature': 0.6,
                   'max_tokens': 256
               }),
               method: 'POST',
