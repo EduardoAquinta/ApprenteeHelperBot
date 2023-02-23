@@ -6,6 +6,8 @@ export default function FormButton(props) {
         props.handleUserInput()
     }
     return (
+        <div className="submit-button">
             <Button type="submit" variant="warning" size="lg" onClick={handleClick} disabled={!props.buttonEnabled}>Submit</Button>
+        </div>
  )
 }
