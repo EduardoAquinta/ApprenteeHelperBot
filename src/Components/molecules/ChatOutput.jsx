@@ -1,5 +1,7 @@
 import ChatMessage from "../atoms/ChatMessage";
 
+
+
 function ChatOutput(props) {
 
     return (
@@ -8,9 +10,9 @@ function ChatOutput(props) {
                 let variantType = 'info';
                 if (index % 2 !== 0) {
                     variantType = 'warning';
-                }
-                if (props.apiError === true) {
-                    variantType = 'danger';
+                    if (props.apiError === true) {
+                        variantType = 'danger';
+                    }
                 }
                 return <ChatMessage variant={variantType} key={index} message={message} />
             })}
