@@ -15,7 +15,6 @@ function ChatMessage(props) {
                     text={props.message}
                     typeSpeed={40}
                     hideCursorAfterText={true}
-
                 />)
             }
         else {

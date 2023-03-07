@@ -19,12 +19,12 @@ export default function ChatBot() {
           setInputEnabled(false);
           setButtonEnabled(false);
 
-          fetch('https://api.openai.com/v1/completions', {
+          fetch('https://api.openai.com/v1/chat/completions', {
               body: JSON.stringify({
-                  'model': 'text-davinci-003',
-                  'prompt': input,
-                  'temperature': 0.6,
-                  'max_tokens': 256
+                  'model': 'gpt-3.5-turbo',
+                  'temperature': 0.2,
+                  'max_tokens': 1024,
+                  'messages': [{"role": "user", "content": `${input}`}]
               }),
               method: 'POST',
               headers: {
@@ -42,7 +42,7 @@ export default function ChatBot() {
                       prevmessages.push(data.error.message);
                       setApiError(true);
                   } else {
-                      prevmessages.push(data.choices[0].text.substring(2));
+                      prevmessages.push(data.choices[0].message.content.substring(2));
                   }
                   setMessages(prevmessages);
                   setInput("")
