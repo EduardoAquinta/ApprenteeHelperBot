@@ -20,9 +20,9 @@ function ChatOutput(props) {
                     }
                 }
                 return (
-                    <div className={className} >
+                    <div key={index} className={className} >
                         <Avatar user={user} />
-                        <ChatMessage variant={variantType} key={index} message={message} />
+                        <ChatMessage variant={variantType} message={message} />
                     </div>
                 )
             })}
