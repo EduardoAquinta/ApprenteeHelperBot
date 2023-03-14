@@ -1,0 +1,28 @@
+.chat-message {
+    width: 100%;
+    margin-left: 0.5rem;
+}
+
+.ai-chat-message {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+.alert {
+    border: #00000055 solid 1px !important;
+    margin-bottom: 0 !important;
+    padding: 0 !important;
+    display: flex;
+    align-items: center;
+}
+
+p {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media screen and (max-width: 400px) {
+    .ai-chat-message, .chat-message {
+        margin: 0;
+    }
+}

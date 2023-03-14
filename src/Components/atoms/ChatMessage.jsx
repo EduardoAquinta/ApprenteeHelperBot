@@ -1,6 +1,6 @@
 import Alert from "react-bootstrap/Alert";
 import TypeWriterEffect from 'react-typewriter-effect';
-
+import './css/chatmessage.css';
 
 function ChatMessage(props) {
     const Typing = () => {
@@ -21,11 +21,18 @@ function ChatMessage(props) {
             return (props.message)
         }
     }
-        return (
-            <Alert variant={props.variant}>
-                {Typing()}
-            </Alert>
-        )
+
+    let className = 'chat-message';
+
+    if (props.variant === 'warning') {
+        className += ' ai-chat-message';
+    }
+
+    return (
+        <Alert className={className} variant={props.variant}>
+            <p>{Typing()}</p>
+        </Alert>
+    )
 }
 
 export default ChatMessage;
