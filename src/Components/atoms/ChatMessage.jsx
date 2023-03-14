@@ -30,7 +30,7 @@ function ChatMessage(props) {
 
     return (
         <Alert className={className} variant={props.variant}>
-            <p>{Typing()}</p>
+            <span>{Typing()}</span>
         </Alert>
     )
 }
