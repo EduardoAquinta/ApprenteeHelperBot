@@ -14,6 +14,6 @@ export default function FormInput(props) {
     }
 
     return (
-        <FormControl autoFocus="true" ref={inputEl} type="text" placeholder={"Please Type!"} value={props.input} onChange={handleChange} disabled={!props.inputEnabled} />
+        <FormControl autoFocus={true} ref={inputEl} type="text" placeholder={"Please Type!"} value={props.input} onChange={handleChange} disabled={!props.inputEnabled} />
     )
 }
