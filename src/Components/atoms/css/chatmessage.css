@@ -17,8 +17,7 @@
 }
 
 span {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 1rem;
 }
 
 @media screen and (max-width: 400px) {
