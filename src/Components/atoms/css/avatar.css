@@ -1,0 +1,16 @@
+.avatar {
+    width: 5rem;
+}
+
+.avatar img {
+    width: 100%;
+    border: #00000055 solid 1px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 400px) {
+    .avatar {
+        width: 3rem;
+        margin-bottom: 0.5rem;
+    }
+}
