@@ -1,0 +1,15 @@
+.chat-output {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.ai-chat-output {
+    flex-direction: row-reverse;
+}
+
+@media screen and (max-width: 400px) {
+    .ai-chat-output, .chat-output {
+        flex-direction: column;
+    }
+}
