@@ -1,4 +1,4 @@
-import robotImage from '../../assets/robot02_90810.png';
+import robotImage from '../../assets/robot.png';
 import './css/avatar.css';
 
 function Avatar(props) {
@@ -6,7 +6,7 @@ function Avatar(props) {
     let image = robotImage;
 
     if (props.user) {
-        image = 'https://picsum.photos/200';
+        image = 'https://placehold.co/300x300.png';
     }
 
     return (
