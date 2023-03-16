@@ -6,7 +6,7 @@ import './css/chatoutput.css';
 function ChatOutput(props) {
 
     return (
-        <div className='chat-container'>
+        <div data-testid='chat-container' className='chat-container'>
             {props.messages.map((message, index) => {
                 let variantType = 'info';
                 let user = true;

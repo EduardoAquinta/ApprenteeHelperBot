@@ -1,16 +1,13 @@
-import Enzyme, {shallow} from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+// import Enzyme, {mount} from 'enzyme';
+// import Adapter from 'enzyme-adapter-react-16';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 import ChatBot from "./Components/ChatBot";
-import FormButton from "./Components/atoms/FormButton";
-import ChatInput from "./Components/molecules/ChatInput";
+import Avatar from "./Components/atoms/Avatar";
+import ChatOutput from "./Components/molecules/ChatOutput";
 const https = require('https');
 const assert = require('assert');
 const apiURL = process.env.REACT_APP_API_KEY
-
-Enzyme.configure({adapter: new Adapter()});
-
 
 describe("Tests for the header component", () =>{
   test('renders learn react link', () => {
@@ -19,6 +16,35 @@ describe("Tests for the header component", () =>{
     expect(linkElement).toBeInTheDocument();
   });
 })
+
+describe("Tests for the Avatar feature", () =>{
+  test('renders Avatar component with an image', () => {
+    render(<Avatar user={true} />);
+    const imageElement = screen.getByAltText(/avatar/i);
+    expect(imageElement).toHaveAttribute('src', expect.stringMatching(/\.jpg|\.png/i));
+  });
+
+  test('renders Avatar component with a default image for ai response. assets/robot.png or assets/robot.jpg', () => {
+    render(<Avatar />);
+    const imageElement = screen.getByAltText(/avatar/i);
+    expect(imageElement).toHaveAttribute('src', expect.stringMatching(/robot\.jpg|robot\.png/i));
+  });
+
+  test('ChatOutput outputs correct text', () => {
+    render(<ChatOutput messages={['test message']} />);
+    const chatMessage = screen.getByText(/test message/i);
+    expect(chatMessage).toHaveTextContent('test message');
+  });
+
+  test('ChatOutput component shows image and chat message', () => {
+    render(<ChatOutput messages={['test message']} />);
+    const chatMessage = screen.getByText(/test message/i);
+    const imageElement = screen.getByAltText(/avatar/i);
+    const chatContainer = screen.getByTestId('chat-container');
+    expect(chatContainer).toContainElement(chatMessage)
+    expect(chatContainer).toContainElement(imageElement)
+  });
+});
 
 describe("Tests for the curl https://api.openai.com/v1/completions \\\n" +
     "  -H 'Content-Type: application/json' \\\n" +
@@ -45,14 +71,6 @@ describe("Tests for the curl https://api.openai.com/v1/completions \\\n" +
     fireEvent.change(input, { target: { value: 'John' } });
     expect(input.value).toBe('John');
   });
-  // test('calls onClick prop when clicked', () => {
-  //   const handleClick = jest.fn(() => {
-  //     console.log('clicked');
-  //   });
-  //   render(<FormButton onClick={handleClick}/>)
-  //   fireEvent.click(screen.getByText(/submit/i))
-  //   expect(handleClick).toHaveBeenCalledTimes(1)
-  // })
 });
 
 describe('ChatGPT api back end tests', () => {
@@ -77,18 +95,16 @@ describe('ChatGPT api back end tests', () => {
     }));
     req.end();
   });
-
-// describe('ChatInput tests', () => {
-//   test('should not allow user to send a message if they were the last to send one.', () => {
-//     const wrapper = shallow(<ChatInput />);
-//     const instance = wrapper.instance();
-//     console.log(instance);
-//   });
-// });
-
 });
 
+describe("Tests for the chat bot component, back end elements", () => {
 
+  //test for connection  - positive (ie status 200)
+    // test for negative connection (404)
+    //test for valid response (is it what you'd expect back)
+
+
+});
 
 // Code example from Chat GPT:
 // it('should update state when input is changed', () => {
@@ -105,13 +121,3 @@ describe('ChatGPT api back end tests', () => {
 //   fireEvent.click(submitButton);
 //   expect(submitCallback).toHaveBeenCalled();
 // });
-
-
-describe("Tests for the chat bot component, back end elements", () => {
-  
-  //test for connection  - positive (ie status 200)
-    // test for negative connection (404)
-    //test for valid response (is it what you'd expect back)
-  
-
-});
